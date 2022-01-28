@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Arrow from "../svg/arrow";
-import Details from "./detail";
+
 
 const Table = ({sortedData,contactData,ascending,flagSort,detailComponent}) => {
   console.log(`ascendingFromTable: ${ascending}`);

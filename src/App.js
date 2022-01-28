@@ -3,16 +3,21 @@ import './App.css';
 import React, {useEffect} from 'react';
 import { useState } from 'react';
 import Table from './table/table';
-import axios from 'axios';
+
 import Loader from './loader/Loader';
 import Details from './table/detail';
+import useServerData from "./hooks/useServerData.js"
+import Switcher from './switcher/switcher';
 function App() {
-  const baseUrl="http://www.filltext.com/?rows=6&id={index}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}"
-  const[contactData,setContactData]=useState([]);
-  const [isLoading,setIsloading]=useState(true);
+  
+  // const[contactData,setContactData]=useState([]);
+  // const [isLoading,setIsloading]=useState(false);
   const [ascending,setAscending]=useState(true);
+  const[isButtonClick, setIsButtonClick]=useState(false); 
   const [flagSort,setFlagSort]=useState('');
+  const [url,setUrl]=useState("http://www.filltext.com/?rows=6&id={index}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}");
   const [detailItem,setDetailItem]=useState([]);
+  const [{contactData,isLoading,setContactData,setIsloading},getData]=useServerData({url,isButtonClick})
   
  const sortedData = (field)=>{
 setDetailItem(field)
@@ -47,19 +52,17 @@ console.log(`ascendingFromApp: ${ascending}`)
 
 
  }
-  useEffect(()=>{
-    axios(baseUrl)
-    .then(response =>{
-   setContactData(response.data)
-   setIsloading(false)
-  } );
-  },[])
+  const buttonHandler = (url)=>{
+    setUrl(url)
+    console.log(url);
+  }
   const detailComponent = (item)=>{
     // console.log(item);
     setDetailItem(item)
     }
   return (
     <div className="container">
+      <Switcher url={url} buttonHandler={buttonHandler}/>
       {isLoading?
           <div style={{display:"flex", justifyContent:'center', marginTop:"50px"}}><Loader/></div>
      :<Table 
@@ -69,7 +72,7 @@ console.log(`ascendingFromApp: ${ascending}`)
      flagSort={flagSort}
      detailComponent={detailComponent}
      />}
-     <Details detailItem={detailItem} />     
+     <Details  detailItem={detailItem} />     
     </div>
   );
 }
