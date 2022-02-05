@@ -1,6 +1,6 @@
 
 import './App.css';
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useState } from 'react';
 import Table from './table/table';
 
@@ -10,8 +10,7 @@ import useServerData from "./hooks/useServerData.js"
 import Switcher from './switcher/switcher';
 function App() {
   
-  // const[contactData,setContactData]=useState([]);
-  // const [isLoading,setIsloading]=useState(false);
+  
   const [ascending,setAscending]=useState(true);
   const[isButtonClick, setIsButtonClick]=useState(false); 
   const [flagSort,setFlagSort]=useState('');
@@ -42,19 +41,15 @@ result=copyData.sort(function(a,b){
      
   }
 )
-
-
 setAscending(!ascending)
 ascending?setContactData(result):setContactData(result.reverse());
-console.log(`ascendingFromApp: ${ascending}`)
-
-
-
-
  }
   const buttonHandler = (url)=>{
     setUrl(url)
+    setIsButtonClick(true)
     console.log(url);
+    console.log(contactData);
+    console.log(`isButtonClick: ${isButtonClick}`);
   }
   const detailComponent = (item)=>{
     // console.log(item);
@@ -62,7 +57,8 @@ console.log(`ascendingFromApp: ${ascending}`)
     }
   return (
     <div className="container">
-      <Switcher url={url} buttonHandler={buttonHandler}/>
+     
+      <Switcher  buttonHandler={buttonHandler}/>
       {isLoading?
           <div style={{display:"flex", justifyContent:'center', marginTop:"50px"}}><Loader/></div>
      :<Table 

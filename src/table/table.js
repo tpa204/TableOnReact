@@ -3,7 +3,7 @@ import Arrow from "../svg/arrow";
 
 
 const Table = ({sortedData,contactData,ascending,flagSort,detailComponent}) => {
-  console.log(`ascendingFromTable: ${ascending}`);
+  
    
     return (
     <table className='table'>
