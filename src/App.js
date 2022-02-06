@@ -2,12 +2,11 @@
 import './App.css';
 import React from 'react';
 import { useState } from 'react';
-import Table from './table/table';
-
-import Loader from './loader/Loader';
 import Details from './table/detail';
 import useServerData from "./hooks/useServerData.js"
 import Switcher from './switcher/switcher';
+import TableBody from './tableBody/tableBody';
+import Loader from './loader/Loader';
 function App() {
   
   
@@ -57,18 +56,18 @@ ascending?setContactData(result):setContactData(result.reverse());
     }
   return (
     <div className="container">
-     
+  {/* <Loader/> */}
       <Switcher  buttonHandler={buttonHandler}/>
-      {isLoading?
-          <div style={{display:"flex", justifyContent:'center', marginTop:"50px"}}><Loader/></div>
-     :<Table 
-     contactData={contactData} 
-     sortedData={sortedData} 
-     ascending={ascending} 
-     flagSort={flagSort}
-     detailComponent={detailComponent}
-     />}
-     <Details  detailItem={detailItem} />     
+      <TableBody 
+      contactData={contactData}
+      sortedData={sortedData}
+      isLoading={isLoading}
+      flagSort={flagSort}
+      ascending={ascending}
+      detailItem={detailItem}
+      detailComponent={detailComponent}
+      />
+         
     </div>
   );
 }

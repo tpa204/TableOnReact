@@ -15,9 +15,10 @@ const useServerData = ({url,isButtonClick}) => {
     if(!isButtonClick) {
        return
     }
+    setIsloading(true)
     axios.get(url)
     .then(response =>{
-   setIsloading(true)
+ 
    setContactData(response.data)
    setIsloading(false)
    
