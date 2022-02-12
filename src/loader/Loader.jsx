@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './loader.css';
+import styles from './loader.module.css';
 
 const Loader = () => {
     return (
-        <div className="lds-circle"><div></div></div>
+        <div className={styles.ldsCircle}><div></div></div>
     );
 };
 
