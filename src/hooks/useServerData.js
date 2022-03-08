@@ -7,6 +7,7 @@ const useServerData = ({url,isButtonClick}) => {
   
   const[contactData,setContactData]=useState([]);
   const [isLoading,setIsloading]=useState(false);
+  const [isLoaded,setIsLoaded]=useState(false);
   const getData = () => {
 
   }
@@ -21,10 +22,11 @@ const useServerData = ({url,isButtonClick}) => {
  
    setContactData(response.data)
    setIsloading(false)
+   setIsLoaded(true)
    
   } );
   },[url,isButtonClick])
-    return [{contactData,isLoading,setContactData,setIsloading},getData]
+    return [{contactData,isLoaded,isLoading,setContactData,setIsloading},getData]
 };
 
 export default useServerData; 
