@@ -14,7 +14,8 @@ const TableBody = ({contactData,sortedData,isLoading,flagSort,ascending,detailIt
      sortedData={sortedData}  
      ascending={ascending} 
      flagSort={flagSort}
-     detailComponent={detailComponent}/>
+     detailComponent={detailComponent}
+     />
      <Fragment>
 {isShowDetail?<Details  detailItem={detailItem}/>:null}
          </Fragment>

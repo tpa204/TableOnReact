@@ -61,11 +61,25 @@ ascending?setContactData(result):setContactData(result.reverse());
     setTotalPages(Math.ceil(contactData.length/limitCountPage))
     console.log(totalPages)
     
-  })
+  },[isLoaded, contactData.length, totalPages])
   const currentPage = (pg)=>{
     setCurrentPageNumber(pg)
+    
       } 
-
+  const lastBlockRow = currentPageNumber*limitCountPage-1
+  const firstBlockRow = lastBlockRow-limitCountPage
+  const currentBlockRows = contactData.slice(firstBlockRow,lastBlockRow)
+  const onNextClick =()=> {
+    if(currentPageNumber<totalPages){
+    setCurrentPageNumber(currentPageNumber+1)}
+    else return
+  }
+  const onPrevClick = ()=>{
+    if(currentPageNumber>1){
+      setCurrentPageNumber(currentPageNumber-1)
+    }
+    return
+  }
   let pages=[]
   for(let i=1; i<=totalPages;i++) {
     pages.push(i)}
@@ -85,7 +99,8 @@ ascending?setContactData(result):setContactData(result.reverse());
       <Fragment>
        <Switcher  buttonHandler={buttonHandler}/>
         <TableBody 
-      contactData={contactData}
+      contactData={currentBlockRows}
+      
       sortedData={sortedData}
       isLoading={isLoading}
       flagSort={flagSort}
@@ -96,7 +111,11 @@ ascending?setContactData(result):setContactData(result.reverse());
       
           
       />
-       <Paginator pages={pages} currentPage={currentPage}/>
+       <Paginator pages={pages} 
+       currentPage={currentPage}
+       onPrevClick={onPrevClick}
+       onNextClick={onNextClick}
+       />
       </Fragment>
       }
      

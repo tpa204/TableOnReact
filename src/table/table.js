@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Arrow from "../svg/arrow";
 
 
-const Table = ({sortedData,contactData,ascending,flagSort,detailComponent}) => {
+const Table = ({sortedData,contactData,ascending,flagSort,detailComponent,currentBlockRows}) => {
   
    
     return (
