@@ -70,13 +70,15 @@ ascending?setContactData(result):setContactData(result.reverse());
   const firstBlockRow = lastBlockRow-limitCountPage
   const currentBlockRows = contactData.slice(firstBlockRow,lastBlockRow)
   const onNextClick =()=> {
+    let temp = currentPageNumber
     if(currentPageNumber<totalPages){
-    setCurrentPageNumber(currentPageNumber+1)}
+    setCurrentPageNumber(temp++)}
     else return
   }
   const onPrevClick = ()=>{
+    let temp = currentPageNumber
     if(currentPageNumber>1){
-      setCurrentPageNumber(currentPageNumber-1)
+      setCurrentPageNumber(temp--)
     }
     return
   }
@@ -100,7 +102,7 @@ ascending?setContactData(result):setContactData(result.reverse());
        <Switcher  buttonHandler={buttonHandler}/>
         <TableBody 
       contactData={currentBlockRows}
-      
+      currentBlockRows={currentBlockRows}
       sortedData={sortedData}
       isLoading={isLoading}
       flagSort={flagSort}
@@ -111,7 +113,8 @@ ascending?setContactData(result):setContactData(result.reverse());
       
           
       />
-       <Paginator pages={pages} 
+       <Paginator 
+       pages={pages} 
        currentPage={currentPage}
        onPrevClick={onPrevClick}
        onNextClick={onNextClick}

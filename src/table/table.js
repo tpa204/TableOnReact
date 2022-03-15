@@ -21,7 +21,7 @@ const Table = ({sortedData,contactData,ascending,flagSort,detailComponent,curren
          </tr>       
          </thead>
          <tbody className="tbody">
-          {contactData.map((item)=>(
+          {currentBlockRows.map((item)=>(
               
              <tr key = {item.phone} onClick={()=>detailComponent(item)}>
               <td>{item.id}</td>

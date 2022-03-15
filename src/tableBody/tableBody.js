@@ -3,14 +3,15 @@ import Loader from '../loader/Loader';
 import Details from '../table/detail';
 import Table from '../table/table';
 
-const TableBody = ({contactData,sortedData,isLoading,flagSort,ascending,detailItem,detailComponent,isShowDetail,pages}) => {
+const TableBody = ({sortedData,isLoading,flagSort,ascending,detailItem,detailComponent,isShowDetail,pages,currentBlockRows}) => {
     return (
         isLoading?
        <Loader/>:
         <Fragment>
         
      <Table 
-     contactData={contactData} 
+     currentBlockRows={currentBlockRows}
+     
      sortedData={sortedData}  
      ascending={ascending} 
      flagSort={flagSort}
